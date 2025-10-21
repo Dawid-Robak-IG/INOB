@@ -27,6 +27,8 @@ class Interp4Move: public AbstractInterp4Command {
    *  Ponieżej zdefiniowane jest tylko jedno pole jako przykład.
    */
   double  _Speed_mmS;
+  double _road;
+  std::string _ObjName;
  public:
   /*!
    * \brief

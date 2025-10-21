@@ -9,14 +9,14 @@
 using namespace std;
 
 void test_exec_pp();
-int test_libInterface();
+int test_movePlugin();
 int test_setPlugin();
 int zalazek();
 
 int main()
 {
-  // return test_libInterface();
-  return test_setPlugin();
+  return test_movePlugin();
+  // return test_setPlugin();
 }
 
 void test_exec_pp(){
@@ -60,7 +60,7 @@ int zalazek(){
 
   return 0;
 }
-int test_libInterface(){
+int test_movePlugin(){
   LibInterface libInterface("libInterp4Move.so");
   AbstractInterp4Command* cmd = libInterface._pCreateCmd();
   cout << endl;
@@ -68,6 +68,13 @@ int test_libInterface(){
   cout << endl;
   cmd->PrintSyntax();
   cout << endl;
+  cmd->PrintCmd();
+  cout << endl;
+
+  std::istringstream Stream;
+  execPreprocesor("moveTest.txt",Stream);
+  cout << Stream.str() << endl;
+  cmd->ReadParams(Stream);
   cmd->PrintCmd();
   cout << endl;
 
