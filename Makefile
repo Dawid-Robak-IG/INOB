@@ -22,7 +22,7 @@ LDFLAGS=-Wall
 
 
 
-interp: obj/main.o obj/ExecPreprocesor.o LibInterface.o
+interp: obj/main.o obj/ExecPreprocesor.o obj/LibInterface.o
 	g++ ${LDFLAGS} -o interp  obj/main.o obj/LibInterface.o obj/ExecPreprocesor.o -ldl
 
 obj/main.o: src/main.cpp inc/AbstractInterp4Command.hh inc/AbstractScene.hh\

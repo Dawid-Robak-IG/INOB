@@ -1,6 +1,6 @@
 #include "LibInterface.hh"
 
-LibInterface::LibInterface(const std::string &libName): _CmdName(libName), _LibHandler(nullptr), _pCreateCmd(nullptr){
+LibInterface::LibInterface(const std::string &libName): _LibHandler(nullptr), _CmdName(libName), _pCreateCmd(nullptr){
     if(!loadLib()){
         std::cout << "\033[31m"
               << "Couldn't load lib: "
