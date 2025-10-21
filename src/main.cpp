@@ -15,8 +15,8 @@ int zalazek();
 
 int main()
 {
-  return test_movePlugin();
-  // return test_setPlugin();
+  // return test_movePlugin();
+  return test_setPlugin();
 }
 
 void test_exec_pp(){

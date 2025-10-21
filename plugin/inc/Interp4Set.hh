@@ -30,9 +30,9 @@ class Interp4Set: public AbstractInterp4Command {
   double  _x;
   double  _y;
   double  _z;
-  double  _roll;
-  double  _pitch;
-  double  _yaw;
+  double  _OX;
+  double  _OY;
+  double  _OZ;
   std::string _ObjName;
  public:
   /*!
