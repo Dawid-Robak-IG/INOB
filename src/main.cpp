@@ -11,39 +11,37 @@ void test_exec_pp();
 
 int main()
 {
-  test_exec_pp();
+  void *pLibHnd_Move = dlopen("libInterp4Move.so",RTLD_LAZY);
+  AbstractInterp4Command *(*pCreateCmd_Move)(void);
+  void *pFun;
 
-  // void *pLibHnd_Move = dlopen("libInterp4Move.so",RTLD_LAZY);
-  // AbstractInterp4Command *(*pCreateCmd_Move)(void);
-  // void *pFun;
-
-  // if (!pLibHnd_Move) {
-  //   cerr << "!!! Brak biblioteki: Interp4Move.so" << endl;
-  //   return 1;
-  // }
+  if (!pLibHnd_Move) {
+    cerr << "!!! Brak biblioteki: Interp4Move.so" << endl;
+    return 1;
+  }
 
 
-  // pFun = dlsym(pLibHnd_Move,"CreateCmd");
-  // if (!pFun) {
-  //   cerr << "!!! Nie znaleziono funkcji CreateCmd" << endl;
-  //   return 1;
-  // }
-  // pCreateCmd_Move = reinterpret_cast<AbstractInterp4Command* (*)(void)>(pFun);
+  pFun = dlsym(pLibHnd_Move,"CreateCmd");
+  if (!pFun) {
+    cerr << "!!! Nie znaleziono funkcji CreateCmd" << endl;
+    return 1;
+  }
+  pCreateCmd_Move = reinterpret_cast<AbstractInterp4Command* (*)(void)>(pFun);
 
 
-  // AbstractInterp4Command *pCmd = pCreateCmd_Move();
+  AbstractInterp4Command *pCmd = pCreateCmd_Move();
 
-  // cout << endl;
-  // cout << pCmd->GetCmdName() << endl;
-  // cout << endl;
-  // pCmd->PrintSyntax();
-  // cout << endl;
-  // pCmd->PrintCmd();
-  // cout << endl;
+  cout << endl;
+  cout << pCmd->GetCmdName() << endl;
+  cout << endl;
+  pCmd->PrintSyntax();
+  cout << endl;
+  pCmd->PrintCmd();
+  cout << endl;
   
-  // delete pCmd;
+  delete pCmd;
 
-  // dlclose(pLibHnd_Move);
+  dlclose(pLibHnd_Move);
 }
 void test_exec_pp(){
   const char* file="test1.txt";

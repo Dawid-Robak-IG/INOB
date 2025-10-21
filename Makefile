@@ -22,12 +22,15 @@ LDFLAGS=-Wall
 
 
 
-interp: obj/main.o obj/ExecPreprocesor.o
-	g++ ${LDFLAGS} -o interp  obj/main.o obj/ExecPreprocesor.o -ldl
+interp: obj/main.o obj/ExecPreprocesor.o LibInterface.o
+	g++ ${LDFLAGS} -o interp  obj/main.o obj/LibInterface.o obj/ExecPreprocesor.o -ldl
 
 obj/main.o: src/main.cpp inc/AbstractInterp4Command.hh inc/AbstractScene.hh\
             inc/AbstractComChannel.hh inc/ExecPreprocesor.hh
 	g++ -c ${CPPFLAGS} -o obj/main.o src/main.cpp
+
+obj/LibInterface.o: src/LibInterface.cpp inc/LibInterface.hh
+	g++ -c $(CPPFLAGS) -o obj/LibInterface.o src/LibInterface.cpp
 
 obj/ExecPreprocesor.o: src/ExecPreprocesor.cpp inc/ExecPreprocesor.hh
 	g++ -c $(CPPFLAGS) -o obj/ExecPreprocesor.o src/ExecPreprocesor.cpp
