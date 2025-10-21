@@ -4,13 +4,26 @@
 #include <sstream>
 #include "AbstractInterp4Command.hh"
 #include "ExecPreprocesor.hh"
+#include "LibInterface.hh"
 
 using namespace std;
 
 void test_exec_pp();
+int test_libInterface();
+int zalazek();
 
 int main()
 {
+  return test_libInterface();
+}
+
+void test_exec_pp(){
+  const char* file="test1.txt";
+  istringstream string_stream;
+  execPreprocesor(file, string_stream);
+  std::cout<<string_stream.str()<<'\n';
+}
+int zalazek(){
   void *pLibHnd_Move = dlopen("libInterp4Move.so",RTLD_LAZY);
   AbstractInterp4Command *(*pCreateCmd_Move)(void);
   void *pFun;
@@ -42,10 +55,18 @@ int main()
   delete pCmd;
 
   dlclose(pLibHnd_Move);
+
+  return 0;
 }
-void test_exec_pp(){
-  const char* file="test1.txt";
-  istringstream string_stream;
-  execPreprocesor(file, string_stream);
-  std::cout<<string_stream.str()<<'\n';
+int test_libInterface(){
+  LibInterface libInterface("libInterp4Move.so");
+  cout << endl;
+  cout << libInterface._pCreateCmd()->GetCmdName() << endl;
+  cout << endl;
+  libInterface._pCreateCmd()->PrintSyntax();
+  cout << endl;
+  libInterface._pCreateCmd()->PrintCmd();
+  cout << endl;
+
+  return 0;
 }
