@@ -10,11 +10,13 @@ using namespace std;
 
 void test_exec_pp();
 int test_libInterface();
+int test_setPlugin();
 int zalazek();
 
 int main()
 {
-  return test_libInterface();
+  // return test_libInterface();
+  return test_setPlugin();
 }
 
 void test_exec_pp(){
@@ -60,12 +62,34 @@ int zalazek(){
 }
 int test_libInterface(){
   LibInterface libInterface("libInterp4Move.so");
+  AbstractInterp4Command* cmd = libInterface._pCreateCmd();
   cout << endl;
-  cout << libInterface._pCreateCmd()->GetCmdName() << endl;
+  cout << cmd->GetCmdName() << endl;
   cout << endl;
-  libInterface._pCreateCmd()->PrintSyntax();
+  cmd->PrintSyntax();
   cout << endl;
-  libInterface._pCreateCmd()->PrintCmd();
+  cmd->PrintCmd();
+  cout << endl;
+
+  return 0;
+}
+int test_setPlugin(){
+  LibInterface libInterface("libInterp4Set.so");
+  AbstractInterp4Command* cmd = libInterface._pCreateCmd();
+
+  cout << endl;
+  cout << cmd->GetCmdName() << endl;
+  cout << endl;
+  cmd->PrintSyntax();
+  cout << endl;
+  cmd->PrintCmd();
+  cout << endl;
+
+  std::istringstream Stream;
+  execPreprocesor("setTest.txt",Stream);
+  cout << Stream.str() << endl;
+  cmd->ReadParams(Stream);
+  cmd->PrintCmd();
   cout << endl;
 
   return 0;
