@@ -5,4 +5,4 @@
 
 #define LINE_SIZE 500
 
-bool execPreprocesor(const char *FileName, std::istringstream &ISTRM4Cmds);
+bool execPreprocesor(const char *FileName, std::istringstream &inStream);

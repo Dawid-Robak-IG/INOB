@@ -1,9 +1,9 @@
 #include "ExecPreprocesor.hh"
 
-bool execPreprocesor(const char *FileName, std::istringstream &ISTRM4Cmds){
+bool execPreprocesor(const char *FileName, std::istringstream &inStream){
     std::string Cmd4Preproc = "cpp -P ";
     char Line[LINE_SIZE];
-    std::ostringstream OTmpStrm;
+    std::ostringstream outStream;
 
     Cmd4Preproc += FileName;
     FILE* pProc = popen(Cmd4Preproc.c_str(),"r");
@@ -11,9 +11,9 @@ bool execPreprocesor(const char *FileName, std::istringstream &ISTRM4Cmds){
     if(!pProc) return false;
 
     while(std::fgets(Line,LINE_SIZE,pProc)){
-        OTmpStrm << Line;
+        outStream << Line;
     }
 
-    ISTRM4Cmds.str(OTmpStrm.str());
+    inStream.str(outStream.str());
     return pclose(pProc) == 0;
 }
