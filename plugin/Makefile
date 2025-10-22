@@ -1,6 +1,6 @@
 
 
-__start__: obj __lines_for_space__ ../libs/libInterp4Move.so ../libs/libInterp4Set.so ../libs/libInterp4Rotate.so
+__start__: obj __lines_for_space__ ../libs/libInterp4Move.so ../libs/libInterp4Set.so ../libs/libInterp4Rotate.so ../libs/libInterp4Pause.so
 	@echo "  Tworzenie wtyczek zakonczone."
 	@echo
 
@@ -53,6 +53,18 @@ obj/Interp4Rotate.o: src/Interp4Rotate.cpp ../inc/AbstractInterp4Command.hh\
                    ../inc/AbstractScene.hh ../inc/AbstractComChannel.hh\
                    inc/Interp4Rotate.hh 
 	g++ -c ${CPPFLAGS} -o obj/Interp4Rotate.o src/Interp4Rotate.cpp
+
+../libs/libInterp4Pause.so: obj/Interp4Pause.o
+	g++ ${LDFLAGS} -o ../libs/libInterp4Pause.so obj/Interp4Pause.o
+	@echo
+	@echo "  Wtyczka dla polecenia 'Pause' zostala utworzona."
+	@echo
+
+
+obj/Interp4Pause.o: src/Interp4Pause.cpp ../inc/AbstractInterp4Command.hh\
+                   ../inc/AbstractScene.hh ../inc/AbstractComChannel.hh\
+                   inc/Interp4Pause.hh 
+	g++ -c ${CPPFLAGS} -o obj/Interp4Pause.o src/Interp4Pause.cpp
 
 clean:
 	rm -f obj/*
