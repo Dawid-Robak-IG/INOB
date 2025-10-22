@@ -1,0 +1,2 @@
+#define ROTATE_SPEED 30
+Rotate Ob_B OY ROTATE_SPEED 40

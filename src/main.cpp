@@ -11,12 +11,14 @@ using namespace std;
 void test_exec_pp();
 int test_movePlugin();
 int test_setPlugin();
+int test_rotatePlugin();
 int zalazek();
 
 int main()
 {
   // return test_movePlugin();
-  return test_setPlugin();
+  // return test_setPlugin();
+  return test_rotatePlugin();
 }
 
 void test_exec_pp(){
@@ -94,6 +96,27 @@ int test_setPlugin(){
 
   std::istringstream Stream;
   execPreprocesor("setTest.txt",Stream);
+  cout << Stream.str() << endl;
+  cmd->ReadParams(Stream);
+  cmd->PrintCmd();
+  cout << endl;
+
+  return 0;
+}
+int test_rotatePlugin(){
+  LibInterface libInterface("libInterp4Rotate.so");
+  AbstractInterp4Command* cmd = libInterface._pCreateCmd();
+
+  cout << endl;
+  cout << cmd->GetCmdName() << endl;
+  cout << endl;
+  cmd->PrintSyntax();
+  cout << endl;
+  cmd->PrintCmd();
+  cout << endl;
+
+  std::istringstream Stream;
+  execPreprocesor("rotateTest.txt",Stream);
   cout << Stream.str() << endl;
   cmd->ReadParams(Stream);
   cmd->PrintCmd();
