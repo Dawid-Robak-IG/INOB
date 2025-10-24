@@ -76,8 +76,7 @@ bool Interp4Move::ReadParams(std::istream& Strm_CmdsList)
   /*
    *  Tu trzeba napisać odpowiedni kod.
    */
-  std::string tmp;
-  Strm_CmdsList >> tmp >>_ObjName >> _Speed_mmS >> _road;
+  Strm_CmdsList >>_ObjName >> _Speed_mmS >> _road;
 
   if (Strm_CmdsList.fail()) {
         std::cerr << "!!! ERROR: couldn't get params for Set." << std::endl;

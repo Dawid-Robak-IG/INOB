@@ -2,6 +2,7 @@
 #include <dlfcn.h>
 #include <cassert>
 #include <sstream>
+#include <unordered_map>
 #include "AbstractInterp4Command.hh"
 #include "ExecPreprocesor.hh"
 #include "LibInterface.hh"
@@ -11,13 +12,30 @@ using namespace std;
 void test_exec_pp();
 int zalazek();
 int test_plugin(string plugin, string test_file);
+int test_RCmd4Lib(std::unordered_map<std::string,std::string> &Cmd4Lib,string test_file); 
+
+// map <string,LibInterface*> ale lepiej inteligentyn wskaznik i potem findu uzywamy
+// i ta mapa ma byc wewnatrz Set4LibInterfaces
+// map<typename Key, typename Cont>
+
 
 int main()
 {
-  test_plugin("libInterp4Move.so","moveTest.txt");
-  test_plugin("libInterp4Set.so","setTest.txt");
-  test_plugin("libInterp4Rotate.so","rotateTest.txt");
-  test_plugin("libInterp4Pause.so","pauseTest.txt");
+  // std::unordered_map<std::string,std::string> Cmd4Lib = {
+  //   {"Move","libInterp4Move.so"},
+  //   {"Set","libInterp4Set.so"},
+  //   {"Rotate","libInterp4Rotate.so"},
+  //   {"Pause","libInterp4Pause.so"}
+  // };
+
+  // test_exec_pp();
+  // test_plugin("libInterp4Move.so","moveTest.txt");
+  // test_plugin("libInterp4Set.so","setTest.txt");
+  // test_plugin("libInterp4Rotate.so","rotateTest.txt");
+  // test_plugin("libInterp4Pause.so","pauseTest.txt");
+  // test_RCmd4Lib(Cmd4Lib,"test1.txt");
+
+  
   return 0;
 }
 
@@ -77,9 +95,23 @@ int test_plugin(string plugin, string test_file){
   std::istringstream Stream;
   execPreprocesor(test_file.c_str(),Stream);
   cout << "Preprocesor streamout: " << Stream.str() << endl;
+  std::string tmp;
+  Stream >> tmp;
   cmd->ReadParams(Stream);
   cmd->PrintCmd();
   cout << endl;
+
+  return 0;
+}
+int test_RCmd4Lib(std::unordered_map<std::string,std::string> &Cmd4Lib,string test_file){
+  std::istringstream Stream;
+  execPreprocesor(test_file.c_str(),Stream);
+  cout << "Preprocesor streamout: " << endl << Stream.str() << endl;
+  cout << "======" << endl;
+  string cmd_name;
+  while(Stream >> cmd_name){
+    cout << Cmd4Lib[cmd_name] << ' ';
+  }
 
   return 0;
 }

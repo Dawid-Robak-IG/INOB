@@ -76,8 +76,7 @@ bool Interp4Pause::ReadParams(std::istream& Strm_CmdsList)
   /*
    *  Tu trzeba napisać odpowiedni kod.
    */
-  std::string tmp;
-  Strm_CmdsList >> tmp >>_time;
+  Strm_CmdsList >>_time;
 
   if (Strm_CmdsList.fail()) {
         std::cerr << "!!! ERROR: couldn't get params for Pause." << std::endl;

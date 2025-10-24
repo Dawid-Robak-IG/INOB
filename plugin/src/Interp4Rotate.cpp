@@ -76,8 +76,7 @@ bool Interp4Rotate::ReadParams(std::istream& Strm_CmdsList)
   /*
    *  Tu trzeba napisać odpowiedni kod.
    */
-  std::string tmp;
-  Strm_CmdsList >> tmp >>_ObjName >> _axis >> _speed >> _length;
+  Strm_CmdsList >>_ObjName >> _axis >> _speed >> _length;
 
   if (Strm_CmdsList.fail()) {
         std::cerr << "!!! ERROR: couldn't get params for Rotate." << std::endl;
