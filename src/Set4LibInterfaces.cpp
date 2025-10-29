@@ -1,6 +1,6 @@
 #include "Set4LibInterfaces.hh"
 
-Set4LibInterfaces::Set4LibInterfaces(std::string fileName): _fileName(fileName){
+Set4LibInterfaces::Set4LibInterfaces(){
     LibInterface *moveInt = new LibInterface("libInterp4Move.so");
     LibInterface *setInt = new LibInterface("libInterp4Set.so");
     LibInterface *pauseInt = new LibInterface("libInterp4Pause.so");
@@ -12,9 +12,9 @@ Set4LibInterfaces::Set4LibInterfaces(std::string fileName): _fileName(fileName){
     _cmds.emplace(rotInt->_pCreateCmd()->GetCmdName(),rotInt);
 }
 
-bool Set4LibInterfaces::execFileCmds(){
+bool Set4LibInterfaces::execFileCmds(std::string fileName){
     std::istringstream Stream;
-    execPreprocesor(_fileName.c_str(),Stream);
+    execPreprocesor(fileName.c_str(),Stream);
     std::cout << "\033[44m" << "Preprocesor streamout: " << std::endl << Stream.str() << std::endl;
     std::cout << "======" << "\033[0m" << std::endl;
     std::string cmd_name;
@@ -27,7 +27,7 @@ bool Set4LibInterfaces::execFileCmds(){
             std::cout << "\33[31m" << "Couldn't find command" << "\33[0m" << std::endl;
             return false;
         } else{
-            LibInterface *lib = static_cast<LibInterface*>(it->second);
+            std::shared_ptr<LibInterface> lib = it->second;
             cmd = lib->_pCreateCmd();
         }
         cmd->ReadParams(Stream);
@@ -35,8 +35,5 @@ bool Set4LibInterfaces::execFileCmds(){
         // cmd->ExecCmd();
         std::cout << std::endl;
     }
-
-  return 0;
-
     return true;
 }

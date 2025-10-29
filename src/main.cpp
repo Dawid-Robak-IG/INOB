@@ -6,6 +6,7 @@
 #include "AbstractInterp4Command.hh"
 #include "ExecPreprocesor.hh"
 #include "LibInterface.hh"
+#include "Set4LibInterfaces.hh"
 
 using namespace std;
 
@@ -34,7 +35,9 @@ int main()
   // test_plugin("libInterp4Rotate.so","rotateTest.txt");
   // test_plugin("libInterp4Pause.so","pauseTest.txt");
   // test_RCmd4Lib(Cmd4Lib,"test1.txt");
+  Set4LibInterfaces set4interfaces;
 
+  set4interfaces.execFileCmds("test1.txt");
   
   return 0;
 }
