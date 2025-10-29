@@ -7,6 +7,7 @@
 #include "ExecPreprocesor.hh"
 #include "LibInterface.hh"
 #include "Set4LibInterfaces.hh"
+#include "ProgramInterpreter.hh"
 
 using namespace std;
 
@@ -14,11 +15,7 @@ void test_exec_pp();
 int zalazek();
 int test_plugin(string plugin, string test_file);
 int test_RCmd4Lib(std::unordered_map<std::string,std::string> &Cmd4Lib,string test_file); 
-
-// map <string,LibInterface*> ale lepiej inteligentyn wskaznik i potem findu uzywamy
-// i ta mapa ma byc wewnatrz Set4LibInterfaces
-// map<typename Key, typename Cont>
-
+int test_set4lib();
 
 int main()
 {
@@ -35,9 +32,10 @@ int main()
   // test_plugin("libInterp4Rotate.so","rotateTest.txt");
   // test_plugin("libInterp4Pause.so","pauseTest.txt");
   // test_RCmd4Lib(Cmd4Lib,"test1.txt");
-  Set4LibInterfaces set4interfaces;
-
-  set4interfaces.execFileCmds("test1.txt");
+  
+  ProgramInterpreter pr_int;
+  pr_int.Read_XML_Config("config/config.xml");
+  
   
   return 0;
 }
@@ -116,5 +114,11 @@ int test_RCmd4Lib(std::unordered_map<std::string,std::string> &Cmd4Lib,string te
     cout << Cmd4Lib[cmd_name] << ' ';
   }
 
+  return 0;
+}
+int test_set4lib(){
+  Set4LibInterfaces set4interfaces;
+
+  set4interfaces.execFileCmds("test1.txt");
   return 0;
 }
