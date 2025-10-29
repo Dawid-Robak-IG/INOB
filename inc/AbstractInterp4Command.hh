@@ -12,6 +12,8 @@
 
 #include "AbstractScene.hh"
 #include "AbstractComChannel.hh"
+#include "AbstractMobileObj.hh"
+#include "AccessControl.hh"
 
 
  /*!
@@ -55,6 +57,9 @@
      virtual bool ExecCmd(AbstractScene      &rScn, 
                           const char         *sMobObjName,
                           AbstractComChannel &rComChann) = 0;
+
+
+    virtual bool ExecCmd(AbstractMobileObj *pObMob, AccessControl *pAccCtrl) = 0;
      /*!
       * \brief Czyta wartości parametrów danego polecenia.
       *

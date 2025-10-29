@@ -66,6 +66,13 @@ bool Interp4Rotate::ExecCmd( AbstractScene      &rScn,
    */
   return true;
 }
+bool Interp4Rotate::ExecCmd(AbstractMobileObj *pObMob, AccessControl *pAccCtrl)
+{
+  /*
+   *  Tu trzeba napisać odpowiedni kod.
+   */
+  return true;
+}
 
 
 /*!

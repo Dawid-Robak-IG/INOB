@@ -66,7 +66,13 @@ bool Interp4Move::ExecCmd( AbstractScene      &rScn,
    */
   return true;
 }
-
+bool Interp4Move::ExecCmd(AbstractMobileObj *pObMob, AccessControl *pAccCtrl)
+{
+  /*
+   *  Tu trzeba napisać odpowiedni kod.
+   */
+  return true;
+}
 
 /*!
  *

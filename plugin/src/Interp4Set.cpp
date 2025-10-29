@@ -66,6 +66,13 @@ bool Interp4Set::ExecCmd( AbstractScene      &rScn,
    */
   return true;
 }
+bool Interp4Set::ExecCmd(AbstractMobileObj *pObMob, AccessControl *pAccCtrl)
+{
+  /*
+   *  Tu trzeba napisać odpowiedni kod.
+   */
+  return true;
+}
 
 
 /*!
