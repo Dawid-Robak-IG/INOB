@@ -77,6 +77,13 @@ namespace geom {
      * Wszystkim współrzędnym przypisana jest wartość 0.
      */
    Vector() { for (Type &Val : _Coord) Val = 0; }
+   Vector(std::initializer_list<Type> list) {
+        assert(list.size() == Size);
+        unsigned i = 0;
+        for (Type val : list) {
+            _Coord[i++] = val;
+        }
+    }
 
     /*!
      * \brief Dostęp do wybranej składowej wektora.
@@ -432,6 +439,13 @@ std::ostream & operator << ( std::ostream &OStrm, const geom::Vector<Type,Size> 
    return OStrm;
 }
 
-
+template<typename Type, unsigned int Size>
+inline
+std::istream& operator>>(std::istream &is, geom::Vector<Type, Size> &v) {
+    for (unsigned int i = 0; i < Size; ++i) {
+        is >> v[i];
+    }
+    return is;
+}
 
 #endif
