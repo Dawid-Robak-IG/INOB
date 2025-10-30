@@ -90,7 +90,7 @@ void XMLInterp4Config::ProcessCubeAttrs(const xercesc::Attributes  &rAttrs)
       IStrm.str(attrValue);
 
       if (strcmp(attrName, "Name") == 0){
-        cube.SetName(attrValue);
+        cube._name =  attrValue;
       }
       else if (strcmp(attrName, "Shift") == 0){
         cube.setShift(IStrm);
