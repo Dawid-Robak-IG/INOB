@@ -3,6 +3,7 @@
 
 
 #include "AbstractMobileObj.hh"
+#include <memory>
 
 /*!
  * \file 
@@ -31,7 +32,7 @@
 	*  \return Jeśli obiekt zostanie znaleziony, to zwracany jest wskaźnik
 	*          na niego. W przypadku przeciwnym zwracany jest wskaźnik \p nullptr.
         */
-        virtual AbstractMobileObj*  FindMobileObj(const char *sName) = 0;
+        virtual std::shared_ptr<AbstractMobileObj>  FindMobileObj(const char *sName) = 0;
        /*!
         * \brief Dodaje do sceny nowy obiekt.
 	*
@@ -39,7 +40,7 @@
 	*  skonstruowaną pełną kwalifikowaną nazwę.
 	*  \param[in] pMobObj - wskaźnik na istniejący obiekt.
         */
-        virtual void AddMobileObj(AbstractMobileObj *pMobObj) = 0;
+        virtual void AddMobileObj(std::shared_ptr<AbstractMobileObj> pMobObj) = 0;
   };
 
 #endif

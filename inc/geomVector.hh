@@ -378,8 +378,6 @@ namespace geom {
    return Vector<Type,Size>(*this) *= Mnoznik;  
  }
 
-
-
  template<typename Type, unsigned int Size>
  inline
  Vector<Type,Size> &Vector<Type,Size>::operator /= (Type Digit)

@@ -22,9 +22,10 @@ LDFLAGS=-Wall
 
 
 
-interp: obj/main.o obj/Cube.o obj/Configuration.o obj/xmlinterp.o obj/ExecPreprocesor.o obj/LibInterface.o obj/Set4LibInterfaces.o obj/ProgramInterpreter.o
+interp: obj/main.o obj/Cube.o obj/Configuration.o obj/xmlinterp.o obj/ExecPreprocesor.o obj/LibInterface.o obj/Set4LibInterfaces.o \
+		obj/Sender.o obj/Scene.o obj/ProgramInterpreter.o
 	g++ ${LDFLAGS} -o interp  obj/main.o obj/Cube.o obj/Configuration.o obj/xmlinterp.o obj/LibInterface.o obj/ExecPreprocesor.o\
-	 obj/Set4LibInterfaces.o obj/ProgramInterpreter.o -ldl -lxerces-c
+	 obj/Set4LibInterfaces.o obj/ProgramInterpreter.o obj/Sender.o obj/Scene.o -ldl -lxerces-c
 
 obj/main.o: src/main.cpp inc/AbstractInterp4Command.hh inc/AbstractScene.hh\
             inc/AbstractComChannel.hh inc/ExecPreprocesor.hh
@@ -32,6 +33,12 @@ obj/main.o: src/main.cpp inc/AbstractInterp4Command.hh inc/AbstractScene.hh\
 
 obj/ProgramInterpreter.o: src/ProgramInterpreter.cpp inc/ProgramInterpreter.hh
 	g++ -c $(CPPFLAGS) -o obj/ProgramInterpreter.o src/ProgramInterpreter.cpp
+
+obj/Sender.o: src/Sender.cpp inc/Sender.hh
+	g++ -c $(CPPFLAGS) -o obj/Sender.o src/Sender.cpp
+
+obj/Scene.o: src/Scene.cpp inc/Scene.hh
+	g++ -c $(CPPFLAGS) -o obj/Scene.o src/Scene.cpp
 
 obj/Set4LibInterfaces.o: src/Set4LibInterfaces.cpp inc/Set4LibInterfaces.hh
 	g++ -c $(CPPFLAGS) -o obj/Set4LibInterfaces.o src/Set4LibInterfaces.cpp

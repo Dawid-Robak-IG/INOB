@@ -7,12 +7,12 @@
 
 
 class Cube{
+public:
   Vector3D _shift;
   Vector3D _scale;
   Vector3D _rot_xyz_deg;
   Vector3D _trans_m;
   Vector3D _rgb;
-public:
   std::string _name;
   Cube();
   bool setShift(std::istringstream &stream);
