@@ -69,7 +69,14 @@ bool ProgramInterpreter::Read_XML_Config(const char* fileName){
             return false;
    }
 
+   std::cout<<"Putting " << rConfig.getLibs().size() << " libs to lib interps...\n";
+   _LibManager.addLibs(rConfig.getLibs());
+
    delete pParser;
    delete pHandler;
    return true;
+}
+
+bool ProgramInterpreter::ExecProgram(const char* fileName_Prog){
+     return _LibManager.execFileCmds(fileName_Prog);
 }

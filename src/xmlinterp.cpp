@@ -60,6 +60,9 @@ void XMLInterp4Config::ProcessLibAttrs(const xercesc::Attributes  &rAttrs)
  char* sLibName = xercesc::XMLString::transcode(rAttrs.getValue(Size));
 
  cout << "  Nazwa biblioteki: " << sLibName << endl;
+ if (!_rConfig.addLib(sLibName)) {
+    std::cerr << "Failed to add library: " << sLibName << '\n';
+ }
 
  // Tu trzeba wpisać własny kod ...
 
@@ -116,6 +119,9 @@ void XMLInterp4Config::ProcessCubeAttrs(const xercesc::Attributes  &rAttrs)
       xercesc::XMLString::release(&attrValue);
   }
   cube.print();
+  if(!_rConfig.addCube(cube)){
+    cerr << "Failed to add new cube to config\n";
+  }
 
  // Tu trzeba wstawić odpowiednio własny kod ...
 }

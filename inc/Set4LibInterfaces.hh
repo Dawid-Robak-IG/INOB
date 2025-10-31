@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include <memory>
 #include <iostream>
+#include <vector>
 
 #include "ExecPreprocesor.hh"
 #include "LibInterface.hh"
@@ -12,4 +13,5 @@ class Set4LibInterfaces{
 public:
     Set4LibInterfaces();
     bool execFileCmds(std::string fileName);
+    bool addLibs(std::vector<std::string> &libNames);
 };

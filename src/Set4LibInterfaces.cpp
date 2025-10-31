@@ -1,15 +1,6 @@
 #include "Set4LibInterfaces.hh"
 
 Set4LibInterfaces::Set4LibInterfaces(){
-    LibInterface *moveInt = new LibInterface("libInterp4Move.so");
-    LibInterface *setInt = new LibInterface("libInterp4Set.so");
-    LibInterface *pauseInt = new LibInterface("libInterp4Pause.so");
-    LibInterface *rotInt = new LibInterface("libInterp4Rotate.so");
-
-    _cmds.emplace(moveInt->_pCreateCmd()->GetCmdName(),moveInt);
-    _cmds.emplace(setInt->_pCreateCmd()->GetCmdName(),setInt);
-    _cmds.emplace(pauseInt->_pCreateCmd()->GetCmdName(),pauseInt);
-    _cmds.emplace(rotInt->_pCreateCmd()->GetCmdName(),rotInt);
 }
 
 bool Set4LibInterfaces::execFileCmds(std::string fileName){
@@ -24,7 +15,7 @@ bool Set4LibInterfaces::execFileCmds(std::string fileName){
         AbstractInterp4Command *cmd;
 
         if(it == _cmds.end()){
-            std::cout << "\33[31m" << "Couldn't find command" << "\33[0m" << std::endl;
+            std::cout << "\33[31m" << "Couldn't find command: " << cmd_name << "\33[0m" << std::endl;
             return false;
         } else{
             std::shared_ptr<LibInterface> lib = it->second;
@@ -34,6 +25,23 @@ bool Set4LibInterfaces::execFileCmds(std::string fileName){
         cmd->PrintCmd();
         // cmd->ExecCmd();
         std::cout << std::endl;
+    }
+    return true;
+}
+
+bool Set4LibInterfaces::addLibs(std::vector<std::string> &libNames){
+    std::cout<<"DUPA1\n";
+    for(auto libName: libNames){
+        std::cout<<"DUPA2\n";
+        std::shared_ptr<LibInterface> libInt = std::make_shared<LibInterface>(libName);
+        try{
+            _cmds.emplace(libInt->_pCreateCmd()->GetCmdName(),libInt);
+            std::cout<<"Got new lib interface: " << libInt->_CmdName << '\n';
+        }
+        catch(const std::exception& e){
+            std::cerr << "Failed to add lib: " << e.what() << '\n';
+            return false;
+        }
     }
     return true;
 }

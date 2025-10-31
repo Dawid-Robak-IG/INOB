@@ -1,11 +1,11 @@
 #include "Cube.hh"
 
-Cube::Cube(): _name("ERROR"), 
-          _shift({0,0,0}), 
+Cube::Cube(): _shift({0,0,0}), 
           _scale({1,1,1}), 
           _rot_xyz_deg({0,0,0}), 
           _trans_m({0,0,0}), 
-          _rgb({128,128,128}){}
+          _rgb({128,128,128}),
+          _name("ERROR"){}
 
 
 bool Cube::setShift(std::istringstream &stream){
