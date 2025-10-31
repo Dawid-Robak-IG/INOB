@@ -25,6 +25,7 @@
 
 class ProgramInterpreter{
     Set4LibInterfaces _LibManager;
+    std::string _config_cmds;
     Scene _Scene;
     AccessControl _aControl;
 

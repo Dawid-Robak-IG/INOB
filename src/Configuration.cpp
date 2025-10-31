@@ -25,3 +25,10 @@ bool Configuration::addCube(Cube &cube){
 std::vector<std::string>& Configuration::getLibs() {
     return _libsNames;
 }
+std::string Configuration::GetObjCmds(){
+    std::string res;
+    for(auto &cube: _cubes){
+        res += cube.get_cmd();
+    }
+    return res;
+}

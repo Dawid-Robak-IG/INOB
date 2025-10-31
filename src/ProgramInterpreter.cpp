@@ -71,6 +71,7 @@ bool ProgramInterpreter::Read_XML_Config(const char* fileName){
 
    std::cout<<"Putting " << rConfig.getLibs().size() << " libs to lib interps...\n";
    _LibManager.addLibs(rConfig.getLibs());
+   _config_cmds = rConfig.GetObjCmds();
    
 
    delete pParser;
@@ -126,20 +127,13 @@ void ProgramInterpreter::klient(){
      Sender ClientSender(Socket4Sending,&_aControl,make_shared<Scene>(_Scene) );
 
      thread   Thread4Sending(Fun_CommunicationThread,&ClientSender);
-     const char *sConfigCmds =
-     "Clear\n"
-     "AddObj Name=Podstawa1 RGB=(20,200,200) Scale=(4,2,1) Shift=(0.5,0,0) RotXYZ_deg=(0,-45,20) Trans_m=(-1,3,0)\n"
-     "AddObj Name=Podstawa1.Ramie1 RGB=(200,0,0) Scale=(3,3,1) Shift=(0.5,0,0) RotXYZ_deg=(0,-45,0) Trans_m=(4,0,0)\n"
-     "AddObj Name=Podstawa1.Ramie1.Ramie2 RGB=(100,200,0) Scale=(2,2,1) Shift=(0.5,0,0) RotXYZ_deg=(0,-45,0) Trans_m=(3,0,0)\n"       
-     "AddObj Name=Podstawa2 RGB=(20,200,200) Scale=(4,2,1) Shift=(0.5,0,0) RotXYZ_deg=(0,-45,0) Trans_m=(-1,-3,0)\n"
-     "AddObj Name=Podstawa2.Ramie1 RGB=(200,0,0) Scale=(3,3,1) Shift=(0.5,0,0) RotXYZ_deg=(0,-45,0) Trans_m=(4,0,0)\n"
-     "AddObj Name=Podstawa2.Ramie1.Ramie2 RGB=(100,200,0) Scale=(2,2,1) Shift=(0.5,0,0) RotXYZ_deg=(0,-45,0) Trans_m=(3,0,0)\n";
+     std::string sConfigCmds = std::string("Clear\n") + _config_cmds;
 
 
      cout << "Konfiguracja:" << endl;
      cout << sConfigCmds << endl;
 
-     Send(Socket4Sending,sConfigCmds);
+     Send(Socket4Sending,sConfigCmds.c_str());
 
 
      cout << "Akcja:" << endl;    

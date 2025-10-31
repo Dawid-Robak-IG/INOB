@@ -25,4 +25,5 @@ public:
     return stream << cube._name << ' ' << cube._shift << ' ' << cube._scale << ' ' << cube._rot_xyz_deg << ' ' << cube._rot_xyz_deg 
                   << ' ' << cube._trans_m << ' ' << cube._rgb;
   }
+  std::string get_cmd();
 };

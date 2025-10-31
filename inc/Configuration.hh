@@ -13,6 +13,7 @@ public:
   bool addLib(const char* name);
   bool addCube(Cube &cube);
   std::vector<std::string> &getLibs();
+  std::string GetObjCmds();
 };
 
 

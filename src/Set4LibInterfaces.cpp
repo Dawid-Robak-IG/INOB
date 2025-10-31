@@ -30,9 +30,7 @@ bool Set4LibInterfaces::execFileCmds(std::string fileName){
 }
 
 bool Set4LibInterfaces::addLibs(std::vector<std::string> &libNames){
-    std::cout<<"DUPA1\n";
     for(auto libName: libNames){
-        std::cout<<"DUPA2\n";
         std::shared_ptr<LibInterface> libInt = std::make_shared<LibInterface>(libName);
         try{
             _cmds.emplace(libInt->_pCreateCmd()->GetCmdName(),libInt);

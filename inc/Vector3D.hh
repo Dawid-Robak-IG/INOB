@@ -53,6 +53,12 @@
         res[2] = v1[2] * v2[2];
         return res;
     }
+    
+    inline std::string bracket(const Vector3D &v) {
+        return "(" + std::to_string(v[0]) + "," + 
+                    std::to_string(v[1]) + "," + 
+                    std::to_string(v[2]) + ")";
+    }
 
 
 #endif
