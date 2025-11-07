@@ -78,6 +78,11 @@ bool ProgramInterpreter::Read_XML_Config(const char* fileName){
    std::cout<<"Putting " << rConfig.GetCubes().size() << " objs to scene...\n";
    _Scene.AddMobileObjs(rConfig.GetCubes());
    
+   _aControl->OpenConnection();
+   std::cout << "Sending config cmds: " << _config_cmds;
+   _aControl->LockAccess();
+   Send(_aControl->GetSocket(),_config_cmds.c_str());
+   _aControl->UnlockAccess();
 
    delete pParser;
    delete pHandler;
@@ -105,40 +110,6 @@ bool ProgramInterpreter::ExecProgram(const char* fileName_Prog){
      return true;
 }
 
-
-
-
-//===============================================================
-/*!
- * Otwiera połączenie sieciowe
- * \param[out]  rSocket - deskryptor gniazda, poprzez które może być
- *                        realizowana komunikacja sieciowa.
- */
-bool ProgramInterpreter::OpenConnection(int &rSocket)
-{
-  struct sockaddr_in  DaneAdSerw;
-
-  bzero((char *)&DaneAdSerw,sizeof(DaneAdSerw));
-
-  DaneAdSerw.sin_family = AF_INET;
-  DaneAdSerw.sin_addr.s_addr = inet_addr("127.0.0.1");
-  DaneAdSerw.sin_port = htons(PORT);
-
-
-  rSocket = socket(AF_INET,SOCK_STREAM,0);
-
-  if (rSocket < 0) {
-     cerr << "*** Blad otwarcia gniazda." << endl;
-     return false;
-  }
-
-  if (connect(rSocket,(struct sockaddr*)&DaneAdSerw,sizeof(DaneAdSerw)) < 0)
-   {
-     cerr << "*** Brak mozliwosci polaczenia do portu: " << PORT << endl;
-     return false;
-   }
-  return true;
-}
 
 // void ProgramInterpreter::klient(){
 //      cout << "Port: " << PORT << endl;

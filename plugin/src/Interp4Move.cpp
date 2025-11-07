@@ -68,9 +68,9 @@ bool Interp4Move::ExecCmd( AbstractScene      &rScn,
 }
 bool Interp4Move::ExecCmd(std::shared_ptr<AbstractMobileObj> pObMob, std::shared_ptr<AccessControl> pAccCtrl){return true;};     
 bool Interp4Move::ExecCmd(AbstractScene &scene, std::shared_ptr<AccessControl> pAccCtrl){
-  std::shared_ptr<AbstractMobileObj> obj = scene.FindMobileObj(this->GetCmdName());
+  std::shared_ptr<AbstractMobileObj> obj = scene.FindMobileObj(_ObjName.c_str());
   if (obj == nullptr) {
-      std::cerr << "Error: object: " << this->GetCmdName() << " wasn't finf\n";
+      std::cerr << "Error: object: " << this->GetCmdName() << " wasn't found\n";
       return false;
   }
 

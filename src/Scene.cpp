@@ -9,15 +9,16 @@ std::shared_ptr<AbstractMobileObj> Scene::FindMobileObj(const char *sName){
     return obj->second;
 }
 void Scene::AddMobileObj(std::shared_ptr<AbstractMobileObj> pMobObj){
-    try{
+    if(pMobObj != nullptr){
         _Set_MobileObjts.emplace(pMobObj->GetName(),pMobObj);
-    } catch(const std::exception &e) {
-        std::cerr << "Failed to add object to scene " << e.what() << '\n';
+        std::cout << "Put new obj to scene: " << pMobObj->GetName() << '\n';
+    } else {
+        std::cerr << "Failed to add object to scene\n";
     }
 }
 void Scene::AddMobileObjs(std::vector<Cube> &cubes){
-    for(auto cube: cubes){
-        auto obj = MakeCube(cube);
+    for(Cube cube: cubes){
+        std::shared_ptr<AbstractMobileObj> obj = MakeCube(cube);
         AddMobileObj(obj);
     }
 }

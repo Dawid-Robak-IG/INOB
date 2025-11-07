@@ -33,7 +33,4 @@ public:
     ProgramInterpreter();
     bool Read_XML_Config(const char* fileName);
     bool ExecProgram(const char* fileName_Prog);
-private:
-//================================================================================
-    bool OpenConnection(int &rSocket);
 };

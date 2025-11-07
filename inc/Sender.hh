@@ -10,6 +10,8 @@ using namespace std;
 int Send(int Sk2Server, const char *sMesg);
 
 
+
+
 // /*!
 //  * \brief Modeluje nadajnik poleceń odzwierciedlających aktualny stan sceny.
 //  *

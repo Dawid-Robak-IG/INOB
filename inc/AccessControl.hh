@@ -3,6 +3,8 @@
 
 #include <mutex>
 
+#include "Port.hh"
+
 /*!
  * \file
  * \brief Zawiera definicję klasy AccessControl
@@ -61,6 +63,32 @@ class AccessControl {
    * \brief Otwiera dostęp do całej sceny.
    */
    void UnlockAccess() { _ExternalGuard.unlock(); } 
+
+   bool OpenConnection()
+   {
+      struct sockaddr_in  DaneAdSerw;
+
+      bzero((char *)&DaneAdSerw,sizeof(DaneAdSerw));
+
+      DaneAdSerw.sin_family = AF_INET;
+      DaneAdSerw.sin_addr.s_addr = inet_addr("127.0.0.1");
+      DaneAdSerw.sin_port = htons(PORT);
+
+
+      _socket = socket(AF_INET,SOCK_STREAM,0);
+
+      if (_socket < 0) {
+         std::cerr << "*** Blad otwarcia gniazda." << std::endl;
+         return false;
+      }
+
+      if (connect(_socket,(struct sockaddr*)&DaneAdSerw,sizeof(DaneAdSerw)) < 0)
+         {
+         std::cerr << "*** Brak mozliwosci polaczenia do portu: " << PORT << std::endl;
+         return false;
+         }
+      return true;
+   }
 };
 
 

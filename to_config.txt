@@ -1,0 +1,3 @@
+Move Podstawa 10 10
+Move Podstawa.Ramie1 20 5
+

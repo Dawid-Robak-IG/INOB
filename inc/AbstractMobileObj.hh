@@ -22,9 +22,6 @@
     */
     class AbstractMobileObj {
     protected:
-      Vector3D _curr_position;
-      Vector3D _curr_rpy;
-
       std::string _name;
       Vector3D _position;
       Vector3D _rpy;

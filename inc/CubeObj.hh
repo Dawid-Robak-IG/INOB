@@ -4,10 +4,7 @@
 
 class CubeObj: public AbstractMobileObj{
 public:
-    CubeObj() {
-        _curr_position = {0,0,0};
-        _curr_rpy = {0,0,0};
-    }
+    CubeObj() {}
     double GetAng_Roll_deg() const{ return _rpy[0];}
     double GetAng_Pitch_deg() const{return _rpy[1];}
     double GetAng_Yaw_deg() const{return _rpy[2];}
