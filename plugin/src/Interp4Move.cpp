@@ -75,8 +75,11 @@ bool Interp4Move::ExecCmd(AbstractScene &scene, std::shared_ptr<AccessControl> p
   }
 
   double delta_t = 0.1;
-  double delta_d = _Speed_mmS * delta_t;
-  Vector3D d = Vector3D({1,0,0}) * delta_d;
+  std::cout << "Going with speed: " << _Speed_mmS << '\n';
+  double delta_d = abs(_Speed_mmS) * delta_t;
+  int dir = (_Speed_mmS >= 0 ? 1 : -1);
+  Vector3D d = Vector3D({1,0,0}) * delta_d * dir;
+  std::cout << "Delta d for move: " << d << '\n';
 
   do{
     _road = _road - delta_d;

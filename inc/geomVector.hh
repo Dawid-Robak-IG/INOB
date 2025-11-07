@@ -366,7 +366,7 @@ namespace geom {
  inline
  Vector<Type,Size> &Vector<Type,Size>::operator *= (Type Mnoznik)
  {
-   for (Type Crd : _Coord ) Crd *= Mnoznik;
+   for (Type &Crd : _Coord ) Crd *= Mnoznik;
    return *this;
  }
 
