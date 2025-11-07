@@ -67,7 +67,12 @@ bool Interp4Pause::ExecCmd( AbstractScene      &rScn,
   return true;
 }
 bool Interp4Pause::ExecCmd(std::shared_ptr<AbstractMobileObj> pObMob, std::shared_ptr<AccessControl> pAccCtrl){return true;};     
-bool Interp4Pause::ExecCmd(AbstractScene &scene, std::shared_ptr<AccessControl> pAccCtrl){return true;}; 
+bool Interp4Pause::ExecCmd(AbstractScene &scene, std::shared_ptr<AccessControl> pAccCtrl){
+  pAccCtrl->LockAccess();
+  usleep(_time * 1000000);
+  pAccCtrl->UnlockAccess();
+  return true;
+}; 
 
 /*!
  *
