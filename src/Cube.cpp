@@ -81,8 +81,8 @@ bool Cube::print(){
 std::string Cube::get_cmd(){
     std::string res = "AddObj Name=" + _name
       + " RGB="+bracket(_rgb,true)
-      + " Scale="+bracket(_scale, true)
-      + " RotXYZ_deg="+bracket(_rot_xyz_deg,true)
-      + " Trans_m="+bracket(_trans_m, true)+"\n";
+      + " Scale="+bracket(_scale, false)
+      + " RotXYZ_deg="+bracket(_rot_xyz_deg,false)
+      + " Trans_m="+bracket(_trans_m, false)+"\n";
     return res;
 }

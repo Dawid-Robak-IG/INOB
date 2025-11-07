@@ -73,7 +73,7 @@ bool ProgramInterpreter::Read_XML_Config(const char* fileName){
 
    std::cout<<"Putting " << rConfig.getLibs().size() << " libs to lib interps...\n";
    _LibManager.addLibs(rConfig.getLibs());
-   _config_cmds = rConfig.GetObjCmds();
+   _config_cmds = "Clear\n" + rConfig.GetObjCmds();
 
    std::cout<<"Putting " << rConfig.GetCubes().size() << " objs to scene...\n";
    _Scene.AddMobileObjs(rConfig.GetCubes());
@@ -82,6 +82,7 @@ bool ProgramInterpreter::Read_XML_Config(const char* fileName){
    std::cout << "Sending config cmds: " << _config_cmds;
    _aControl->LockAccess();
    Send(_aControl->GetSocket(),_config_cmds.c_str());
+   close(_aControl->GetSocket());
    _aControl->UnlockAccess();
 
    delete pParser;
