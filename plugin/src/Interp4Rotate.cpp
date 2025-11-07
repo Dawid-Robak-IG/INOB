@@ -66,13 +66,9 @@ bool Interp4Rotate::ExecCmd( AbstractScene      &rScn,
    */
   return true;
 }
-bool Interp4Rotate::ExecCmd(AbstractMobileObj *pObMob, AccessControl *pAccCtrl)
-{
-  /*
-   *  Tu trzeba napisać odpowiedni kod.
-   */
-  return true;
-}
+bool Interp4Rotate::ExecCmd(std::shared_ptr<AbstractMobileObj> pObMob, std::shared_ptr<AccessControl> pAccCtrl){return true;};     
+bool Interp4Rotate::ExecCmd(AbstractScene &scene, std::shared_ptr<AccessControl> pAccCtrl){return true;}; 
+
 
 
 /*!

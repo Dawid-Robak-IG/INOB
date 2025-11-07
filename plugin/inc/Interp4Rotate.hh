@@ -67,7 +67,9 @@ class Interp4Rotate: public AbstractInterp4Command {
   virtual bool ExecCmd( AbstractScene      &rScn, 
                         const char         *sMobObjName,
                         AbstractComChannel &rComChann ) override;
-  virtual bool ExecCmd(AbstractMobileObj *pObMob, AccessControl *pAccCtrl) override;                      
+  virtual bool ExecCmd(std::shared_ptr<AbstractMobileObj> pObMob, std::shared_ptr<AccessControl> pAccCtrl) override;     
+  virtual bool ExecCmd(AbstractScene &scene, std::shared_ptr<AccessControl> pAccCtrl) override;    
+                    
   /*!
    * \brief Czyta wartości parametrów danego polecenia
    */

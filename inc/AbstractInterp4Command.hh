@@ -15,6 +15,8 @@
 #include "AbstractMobileObj.hh"
 #include "AccessControl.hh"
 
+#include "Sender.hh"
+#include <iomanip>
 
  /*!
   * \brief Definiuje interfejs interpretera polecenia.
@@ -59,7 +61,9 @@
                           AbstractComChannel &rComChann) = 0;
 
 
-    virtual bool ExecCmd(AbstractMobileObj *pObMob, AccessControl *pAccCtrl) = 0;
+    virtual bool ExecCmd(std::shared_ptr<AbstractMobileObj> pObMob, std::shared_ptr<AccessControl> pAccCtrl) = 0;
+    virtual bool ExecCmd(AbstractScene &scene, std::shared_ptr<AccessControl> pAccCtrl) = 0;
+
      /*!
       * \brief Czyta wartości parametrów danego polecenia.
       *

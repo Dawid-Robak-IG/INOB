@@ -31,7 +31,12 @@ class AccessControl {
     * \brief Wykorzystywany do blokowania całej sceny.
     */
     std::mutex  _ExternalGuard;
+
+    int _socket;
  public:
+   AccessControl(int Socket=0): _socket(Socket){}
+   int GetSocket(){return _socket;}
+
   /*!
    * \brief Dostęp do informacji o zmianie.
    *

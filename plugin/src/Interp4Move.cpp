@@ -66,13 +66,29 @@ bool Interp4Move::ExecCmd( AbstractScene      &rScn,
    */
   return true;
 }
-bool Interp4Move::ExecCmd(AbstractMobileObj *pObMob, AccessControl *pAccCtrl)
-{
-  /*
-   *  Tu trzeba napisać odpowiedni kod.
-   */
+bool Interp4Move::ExecCmd(std::shared_ptr<AbstractMobileObj> pObMob, std::shared_ptr<AccessControl> pAccCtrl){return true;};     
+bool Interp4Move::ExecCmd(AbstractScene &scene, std::shared_ptr<AccessControl> pAccCtrl){
+  std::shared_ptr<AbstractMobileObj> obj = scene.FindMobileObj(this->GetCmdName());
+  if (obj == nullptr) {
+      std::cerr << "Error: object: " << this->GetCmdName() << " wasn't finf\n";
+      return false;
+  }
+
+  double delta_t = 0.1;
+  double delta_d = _Speed_mmS * delta_t;
+  Vector3D d = Vector3D({1,1,1}) * delta_d;
+
+  do{
+    _road = _road - delta_d;
+    pAccCtrl->LockAccess();
+    obj->SetPosition_m(obj->GetPositoin_m() + d);
+    Send(pAccCtrl->GetSocket(),make_cmd(obj).c_str());
+    pAccCtrl->UnlockAccess();
+    usleep(delta_t * 1000);
+  } while(_road > 0);
+
   return true;
-}
+}; 
 
 /*!
  *
@@ -108,3 +124,12 @@ void Interp4Move::PrintSyntax() const
 {
   cout << "   Move  NazwaObiektu  Szybkosc[m/s]  DlugoscDrogi[m]" << endl;
 }
+std::string Interp4Move::make_cmd(std::shared_ptr<AbstractMobileObj> obj) {
+    Vector3D pos = obj->GetPositoin_m();
+    std::ostringstream oss;
+    oss << std::fixed << std::setprecision(3);
+    oss << "UpdateObj Name=" << obj->GetName()
+        << " Trans_m=(" << pos[0] << "," << pos[1] << "," << pos[2] << ")\n";
+    return oss.str();
+}
+

@@ -32,3 +32,6 @@ std::string Configuration::GetObjCmds(){
     }
     return res;
 }
+std::vector<Cube>& Configuration::GetCubes(){
+    return _cubes;
+}

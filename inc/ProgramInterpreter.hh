@@ -27,12 +27,12 @@ class ProgramInterpreter{
     Set4LibInterfaces _LibManager;
     std::string _config_cmds;
     Scene _Scene;
-    AccessControl _aControl;
+    std::shared_ptr<AccessControl> _aControl;
 
 public:
+    ProgramInterpreter();
     bool Read_XML_Config(const char* fileName);
     bool ExecProgram(const char* fileName_Prog);
-    void klient();
 private:
 //================================================================================
     bool OpenConnection(int &rSocket);

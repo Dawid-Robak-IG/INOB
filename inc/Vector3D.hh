@@ -14,7 +14,7 @@
  typedef geom::Vector<double,3>  Vector3D;
 
     inline double deg2rad(double d) { return d * M_PI / 180.0; }
-    inline bool IsClose(const Vector3D &a, const Vector3D &b, double eps = 0.001) {
+    inline bool IsClose(const Vector3D &a, const Vector3D &b, double eps = 0.01) {
         for (int i = 0; i < 3; ++i)
             if (fabs(a[i] - b[i]) > eps) return false;
         return true;
@@ -54,7 +54,11 @@
         return res;
     }
     
-    inline std::string bracket(const Vector3D &v) {
+    inline std::string bracket(const Vector3D &v, bool is_int=false) {
+        if(is_int) return "(" + std::to_string(static_cast<int>(v[0])) + "," + 
+                    std::to_string(static_cast<int>(v[1])) + "," + 
+                    std::to_string(static_cast<int>(v[2])) + ")";
+
         return "(" + std::to_string(v[0]) + "," + 
                     std::to_string(v[1]) + "," + 
                     std::to_string(v[2]) + ")";

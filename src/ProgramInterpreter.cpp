@@ -1,6 +1,8 @@
 #include "ProgramInterpreter.hh"
 
-
+ProgramInterpreter::ProgramInterpreter(){
+     _aControl = std::make_shared<AccessControl>();
+}
 bool ProgramInterpreter::Read_XML_Config(const char* fileName){
     Configuration rConfig;
 
@@ -72,6 +74,9 @@ bool ProgramInterpreter::Read_XML_Config(const char* fileName){
    std::cout<<"Putting " << rConfig.getLibs().size() << " libs to lib interps...\n";
    _LibManager.addLibs(rConfig.getLibs());
    _config_cmds = rConfig.GetObjCmds();
+
+   std::cout<<"Putting " << rConfig.GetCubes().size() << " objs to scene...\n";
+   _Scene.AddMobileObjs(rConfig.GetCubes());
    
 
    delete pParser;
@@ -80,7 +85,24 @@ bool ProgramInterpreter::Read_XML_Config(const char* fileName){
 }
 
 bool ProgramInterpreter::ExecProgram(const char* fileName_Prog){
-     return _LibManager.execFileCmds(fileName_Prog);
+     std::istringstream Stream;
+     execPreprocesor(fileName_Prog,Stream);
+     std::cout << "\033[44m" << "Preprocesor streamout: " << std::endl << Stream.str() << std::endl;
+     std::cout << "======" << "\033[0m" << std::endl;
+     std::string cmd_name;
+     while(Stream >> cmd_name){
+          std::cout << "\33[32m" << "Read cmd: " << cmd_name << "\33[0m" << std::endl;
+          std::shared_ptr<AbstractInterp4Command> cmd;
+          cmd = _LibManager.find_cmd(cmd_name);
+          if(cmd == nullptr){
+               return false;
+          }
+          cmd->ReadParams(Stream);
+          cmd->PrintCmd();
+          cmd->ExecCmd(_Scene,_aControl);
+          std::cout << std::endl;
+     }
+     return true;
 }
 
 
@@ -118,34 +140,33 @@ bool ProgramInterpreter::OpenConnection(int &rSocket)
   return true;
 }
 
-void ProgramInterpreter::klient(){
-     cout << "Port: " << PORT << endl;
-     int Socket4Sending;   
+// void ProgramInterpreter::klient(){
+//      cout << "Port: " << PORT << endl;
+//      int Socket4Sending;   
 
-     if (!OpenConnection(Socket4Sending)) return;
+//      if (!OpenConnection(Socket4Sending)) return;
 
-     Sender ClientSender(Socket4Sending,&_aControl,make_shared<Scene>(_Scene) );
+//      Sender ClientSender(Socket4Sending,&_aControl,make_shared<Scene>(_Scene) );
 
-     thread   Thread4Sending(Fun_CommunicationThread,&ClientSender);
-     std::string sConfigCmds = std::string("Clear\n") + _config_cmds;
-
-
-     cout << "Konfiguracja:" << endl;
-     cout << sConfigCmds << endl;
-
-     Send(Socket4Sending,sConfigCmds.c_str());
+//      thread   Thread4Sending(Fun_CommunicationThread,&ClientSender);
+//      std::string sConfigCmds = std::string("Clear\n") + _config_cmds;
 
 
-     cout << "Akcja:" << endl;    
-     usleep(20000);
-     ChangeState(_aControl, _Scene);
-     _aControl.MarkChange();
-     usleep(100000);
-     usleep(100000);
+//      cout << "Konfiguracja:" << endl;
+//      cout << sConfigCmds << endl;
 
-     cout << "Close\n" << endl;
-     Send(Socket4Sending,"Close\n");
-     ClientSender.CancelCountinueLooping();
-     Thread4Sending.join();
-     close(Socket4Sending);
-}
+//      Send(Socket4Sending,sConfigCmds.c_str());
+
+
+//      cout << "Akcja:" << endl;    
+//      ChangeState(_aControl, _Scene);
+//      _aControl.MarkChange();
+//      usleep(100000);
+//      usleep(100000);
+
+//      cout << "Close\n" << endl;
+//      Send(Socket4Sending,"Close\n");
+//      ClientSender.CancelCountinueLooping();
+//      Thread4Sending.join();
+//      close(Socket4Sending);
+// }

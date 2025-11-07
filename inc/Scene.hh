@@ -10,7 +10,7 @@
 #include "Cube.hh"
 
 
-class Scene: AbstractScene{
+class Scene: public AbstractScene{
     std::unordered_map<std::string, std::shared_ptr<AbstractMobileObj>> _Set_MobileObjts;
 public:
     std::shared_ptr<AbstractMobileObj>  FindMobileObj(const char *sName) override;

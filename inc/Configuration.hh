@@ -14,6 +14,7 @@ public:
   bool addCube(Cube &cube);
   std::vector<std::string> &getLibs();
   std::string GetObjCmds();
+  std::vector<Cube> &GetCubes();
 };
 
 

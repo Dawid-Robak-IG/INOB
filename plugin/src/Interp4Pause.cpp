@@ -66,14 +66,8 @@ bool Interp4Pause::ExecCmd( AbstractScene      &rScn,
    */
   return true;
 }
-bool Interp4Pause::ExecCmd(AbstractMobileObj *pObMob, AccessControl *pAccCtrl)
-{
-  /*
-   *  Tu trzeba napisać odpowiedni kod.
-   */
-  return true;
-}
-
+bool Interp4Pause::ExecCmd(std::shared_ptr<AbstractMobileObj> pObMob, std::shared_ptr<AccessControl> pAccCtrl){return true;};     
+bool Interp4Pause::ExecCmd(AbstractScene &scene, std::shared_ptr<AccessControl> pAccCtrl){return true;}; 
 
 /*!
  *

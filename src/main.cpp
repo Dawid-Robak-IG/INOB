@@ -15,7 +15,7 @@ void test_exec_pp();
 int zalazek();
 int test_plugin(string plugin, string test_file);
 int test_RCmd4Lib(std::unordered_map<std::string,std::string> &Cmd4Lib,string test_file); 
-int test_set4lib();
+// int test_set4lib();
 
 int main()
 {
@@ -36,7 +36,6 @@ int main()
   ProgramInterpreter pr_int;
   pr_int.Read_XML_Config("config/config.xml");
   pr_int.ExecProgram("test1.txt");
-  
   
   return 0;
 }
@@ -117,9 +116,9 @@ int test_RCmd4Lib(std::unordered_map<std::string,std::string> &Cmd4Lib,string te
 
   return 0;
 }
-int test_set4lib(){
-  Set4LibInterfaces set4interfaces;
+// int test_set4lib(){
+//   Set4LibInterfaces set4interfaces;
 
-  set4interfaces.execFileCmds("test1.txt");
-  return 0;
-}
+//   set4interfaces.execFileCmds("test1.txt");
+//   return 0;
+// }

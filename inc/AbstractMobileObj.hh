@@ -111,25 +111,6 @@
         virtual const std::string & GetName() const = 0;
 
         virtual void SetRPY(Vector3D rpy) = 0;
-
-        virtual std::string GetStateDesc() const
-        {
-            std::ostringstream oss;
-            oss << "UpdateObj Name=" << _name
-                << " Shift=(" << _position[0] << "," << _position[1] << "," << _position[2] << ")"
-                << " RotXYZ_deg=(" << _rpy[0] << "," << _rpy[1] << "," << _rpy[2] << ")";
-
-            return oss.str();
-        }
-        bool IncStateIndex()
-        {
-          if(IsClose(_curr_position,_position) and IsClose(_curr_rpy,_rpy)) return false;
-
-            _curr_position += (_position - _curr_position ) / 10;
-            _curr_rpy += (_rpy - _curr_rpy) / 10;
-
-            return true;
-        }
     };
 
 
