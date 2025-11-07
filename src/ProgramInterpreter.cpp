@@ -96,11 +96,13 @@ bool ProgramInterpreter::ExecProgram(const char* fileName_Prog){
      std::cout << "\033[44m" << "Preprocesor streamout: " << std::endl << Stream.str() << std::endl;
      std::cout << "======" << "\033[0m" << std::endl;
      std::string cmd_name;
+     _aControl->OpenConnection();
      while(Stream >> cmd_name){
           std::cout << "\33[32m" << "Read cmd: " << cmd_name << "\33[0m" << std::endl;
           std::shared_ptr<AbstractInterp4Command> cmd;
           cmd = _LibManager.find_cmd(cmd_name);
           if(cmd == nullptr){
+               close(_aControl->GetSocket());
                return false;
           }
           cmd->ReadParams(Stream);
@@ -108,6 +110,7 @@ bool ProgramInterpreter::ExecProgram(const char* fileName_Prog){
           cmd->ExecCmd(_Scene,_aControl);
           std::cout << std::endl;
      }
+     close(_aControl->GetSocket());
      return true;
 }
 

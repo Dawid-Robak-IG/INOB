@@ -76,15 +76,17 @@ bool Interp4Move::ExecCmd(AbstractScene &scene, std::shared_ptr<AccessControl> p
 
   double delta_t = 0.1;
   double delta_d = _Speed_mmS * delta_t;
-  Vector3D d = Vector3D({1,1,1}) * delta_d;
+  Vector3D d = Vector3D({1,0,0}) * delta_d;
 
   do{
     _road = _road - delta_d;
+    std::cout << "Dist to go: " << _road << '\n';
     pAccCtrl->LockAccess();
     obj->SetPosition_m(obj->GetPositoin_m() + d);
     Send(pAccCtrl->GetSocket(),make_cmd(obj).c_str());
+    std::cout<<"Move: " << make_cmd(obj);
     pAccCtrl->UnlockAccess();
-    usleep(delta_t * 1000);
+    usleep(delta_t * 1000000);
   } while(_road > 0);
 
   return true;

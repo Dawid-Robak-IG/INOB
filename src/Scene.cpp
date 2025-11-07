@@ -19,6 +19,7 @@ void Scene::AddMobileObj(std::shared_ptr<AbstractMobileObj> pMobObj){
 void Scene::AddMobileObjs(std::vector<Cube> &cubes){
     for(Cube cube: cubes){
         std::shared_ptr<AbstractMobileObj> obj = MakeCube(cube);
+        std::cout << "Adding Obj Cube with pos: " << obj->GetPositoin_m() << '\n';
         AddMobileObj(obj);
     }
 }
