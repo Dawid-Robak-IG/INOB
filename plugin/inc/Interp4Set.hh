@@ -34,6 +34,8 @@ class Interp4Set: public AbstractInterp4Command {
   double  _OY;
   double  _OZ;
   std::string _ObjName;
+
+  std::string make_cmd(std::shared_ptr<AbstractMobileObj> obj);
  public:
   /*!
    * \brief
