@@ -67,8 +67,40 @@ bool Interp4Rotate::ExecCmd( AbstractScene      &rScn,
   return true;
 }
 bool Interp4Rotate::ExecCmd(std::shared_ptr<AbstractMobileObj> pObMob, std::shared_ptr<AccessControl> pAccCtrl){return true;};     
-bool Interp4Rotate::ExecCmd(AbstractScene &scene, std::shared_ptr<AccessControl> pAccCtrl){return true;}; 
+bool Interp4Rotate::ExecCmd(AbstractScene &scene, std::shared_ptr<AccessControl> pAccCtrl){
+  std::shared_ptr<AbstractMobileObj> obj = scene.FindMobileObj(_ObjName.c_str());
+  if (obj == nullptr) {
+      std::cerr << "Error: object: " << this->GetCmdName() << " wasn't found\n";
+      return false;
+  }
 
+  double delta_t = 0.1;
+  std::cout << "Going with speed: " << _speed << '\n';
+  double delta_d = abs(_speed) * delta_t;
+  int dir = (_speed >= 0 ? 1 : -1);
+  double d = delta_d * dir;
+  std::cout << "Delta d for move: " << d << '\n';
+
+  do{
+    _length = _length - delta_d;
+    std::cout << "Len to go: " << _length << '\n';
+    pAccCtrl->LockAccess();
+    if(_axis == "OX") obj->SetAng_Roll_deg(obj->GetAng_Roll_deg() + d);
+    else if(_axis == "OY") obj->SetAng_Pitch_deg(obj->GetAng_Pitch_deg() +d);
+    else if(_axis == "OZ") obj->SetAng_Yaw_deg(obj->GetAng_Yaw_deg() +d);
+    else{
+      pAccCtrl->UnlockAccess();
+      std::cerr << "Error: unrecognised axis\n";
+      return false;
+    }
+    Send(pAccCtrl->GetSocket(),make_cmd(obj).c_str());
+    std::cout<<"Rotate: " << make_cmd(obj);
+    pAccCtrl->UnlockAccess();
+    usleep(delta_t * 1000000);
+  } while(_length > 0);
+
+  return true;
+}; 
 
 
 /*!
@@ -105,4 +137,14 @@ AbstractInterp4Command* Interp4Rotate::CreateCmd()
 void Interp4Rotate::PrintSyntax() const
 {
   cout << "   Set  NazwaObiektu  oś predkosc[m/s] dl.drogi[m]" << endl;
+}
+std::string Interp4Rotate::make_cmd(std::shared_ptr<AbstractMobileObj> obj) {
+    double roll = obj->GetAng_Roll_deg();
+    double pitch = obj->GetAng_Pitch_deg();
+    double yaw = obj->GetAng_Yaw_deg();
+    std::ostringstream oss;
+    oss << std::fixed << std::setprecision(3);
+    oss << "UpdateObj Name=" << obj->GetName()
+        << " RotXYZ_deg=(" << roll << "," << pitch << "," << yaw << ")\n";
+    return oss.str();
 }

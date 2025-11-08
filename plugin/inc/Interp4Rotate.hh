@@ -31,6 +31,8 @@ class Interp4Rotate: public AbstractInterp4Command {
   double _speed;
   double _length;
   std::string _ObjName;
+
+  std::string make_cmd(std::shared_ptr<AbstractMobileObj> obj);
  public:
   /*!
    * \brief

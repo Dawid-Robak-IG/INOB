@@ -1,4 +1,6 @@
+Rotate Podstawa.Ramie1.Ramie2 OY -10 90
 Move Podstawa -0.25 0.5
 Move Podstawa.Ramie1 1.0 1.5
 Pause 1.0
 Move Podstawa.Ramie1.Ramie2 -1.0 1.5
+Rotate Podstawa OY 10 90
