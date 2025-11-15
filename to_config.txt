@@ -12,6 +12,19 @@ Rotate Podstawa.Nad1.NogaLewaCzlon1.NogaLewaCzlon2 OX 60 30
 Rotate Podstawa.Nad1.NogaPrawaCzlon1 OX 30 -15
 Rotate Podstawa.Nad1.NogaPrawaCzlon1.NogaPrawaCzlon2 OX 60 30
 
+Pause 1.0
+Set Podstawa 0 0 0 70 0 0
+Pause 0.2
+Set Podstawa 0 0 0 0 0 0
+Pause 0.2
+Set Podstawa 0 0 0 70 0 0
+Pause 0.2
+Set Podstawa 0 0 0 0 0 0
+Pause 0.2
+Set Podstawa 0 0 0 70 0 0
+Pause 0.2
+Set Podstawa 0 0 0 0 0 0
+
 /*
 Rotate Podstawa.Ramie1.Ramie2 OY -10 90
 Move Podstawa -0.25 0.5
