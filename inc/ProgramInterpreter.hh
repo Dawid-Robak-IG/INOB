@@ -29,8 +29,15 @@ class ProgramInterpreter{
     Scene _Scene;
     std::shared_ptr<AccessControl> _aControl;
 
+    std::vector<std::thread> _threads;
+    std::vector<std::shared_ptr<AbstractInterp4Command>> _parallelCmds;
 public:
     ProgramInterpreter();
     bool Read_XML_Config(const char* fileName);
     bool ExecProgram(const char* fileName_Prog);
+
+private:
+    bool read_parallel(std::istringstream &Stream);
+    bool exec_threads();
+
 };

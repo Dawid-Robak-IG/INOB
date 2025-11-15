@@ -98,50 +98,59 @@ bool ProgramInterpreter::ExecProgram(const char* fileName_Prog){
      std::string cmd_name;
      _aControl->OpenConnection();
      while(Stream >> cmd_name){
+          std::cout << "\33[32m" << "Read sth in main loop of execing program\33[0m" << std::endl;
+          if(cmd_name=="Begin_Parallel_Actions"){
+               std::cout << "\33[32m" << "Read Begin_Parallel_Actions\33[0m" << std::endl;
+               if(!read_parallel(Stream)){
+                    close(_aControl->GetSocket());
+                    return false;
+               }
+               else if(!exec_threads()){
+                    close(_aControl->GetSocket());
+                    return false; 
+               }
+          } else {
+               close(_aControl->GetSocket());
+               return false;
+          }
+     }
+     close(_aControl->GetSocket());
+     std::cout << "\33[32m" << "Ending ExecProgram\33[0m" << std::endl;
+     return true;
+}
+
+bool ProgramInterpreter::read_parallel(std::istringstream &Stream){
+     std::string cmd_name;
+     while(Stream >> cmd_name){
+          if(cmd_name == "End_Parallel_Actions"){
+               std::cout << "\33[32m" << "Read End_Parallel_Actions\33[0m" << std::endl;
+               return true;
+          }
           std::cout << "\33[32m" << "Read cmd: " << cmd_name << "\33[0m" << std::endl;
           std::shared_ptr<AbstractInterp4Command> cmd;
           cmd = _LibManager.find_cmd(cmd_name);
           if(cmd == nullptr){
-               close(_aControl->GetSocket());
                return false;
           }
           cmd->ReadParams(Stream);
           cmd->PrintCmd();
-          cmd->ExecCmd(_Scene,_aControl);
+          _parallelCmds.push_back(cmd);
           std::cout << std::endl;
      }
-     close(_aControl->GetSocket());
+     return false;
+}
+bool ProgramInterpreter::exec_threads(){
+     for(std::shared_ptr<AbstractInterp4Command> &cmd: _parallelCmds){
+          _threads.emplace_back([&,cmd](){
+               cmd->ExecCmd(_Scene, _aControl);
+          });
+     }
+     for(std::thread &my_thread: _threads){
+          my_thread.join();
+     }
+
+     std::cout << "\33[32m" << "Cleaning pararellCmds and threads\33[0m" << std::endl;
+     _parallelCmds.clear();
+     _threads.clear();
      return true;
 }
-
-
-// void ProgramInterpreter::klient(){
-//      cout << "Port: " << PORT << endl;
-//      int Socket4Sending;   
-
-//      if (!OpenConnection(Socket4Sending)) return;
-
-//      Sender ClientSender(Socket4Sending,&_aControl,make_shared<Scene>(_Scene) );
-
-//      thread   Thread4Sending(Fun_CommunicationThread,&ClientSender);
-//      std::string sConfigCmds = std::string("Clear\n") + _config_cmds;
-
-
-//      cout << "Konfiguracja:" << endl;
-//      cout << sConfigCmds << endl;
-
-//      Send(Socket4Sending,sConfigCmds.c_str());
-
-
-//      cout << "Akcja:" << endl;    
-//      ChangeState(_aControl, _Scene);
-//      _aControl.MarkChange();
-//      usleep(100000);
-//      usleep(100000);
-
-//      cout << "Close\n" << endl;
-//      Send(Socket4Sending,"Close\n");
-//      ClientSender.CancelCountinueLooping();
-//      Thread4Sending.join();
-//      close(Socket4Sending);
-// }

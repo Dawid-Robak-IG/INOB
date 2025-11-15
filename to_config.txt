@@ -1,29 +1,100 @@
-Move Podstawa -1.5 0.5
+#define PODSTAWA_RELOCATE_SPEED 1.0
+#define PODSTAWA_RELOCATE_MINUSSPEED -1.0
+#define PODSTAWA_RELOCATE_DIST 1.0
 
-Rotate Podstawa.Nad1.Nad2.Nad3.Nad4.RekaLewaCzlon1 OZ 60 30 
-Rotate Podstawa.Nad1.Nad2.Nad3.Nad4.RekaLewaCzlon1.RekaLewaCzlon2 OZ 120 60 
 
-Rotate Podstawa.Nad1.Nad2.Nad3.Nad4.RekaPrawaCzlon1 OZ 60 -30 
-Rotate Podstawa.Nad1.Nad2.Nad3.Nad4.RekaPrawaCzlon1.RekaPrawaCzlon2 OZ 120 60 
+Begin_Parallel_Actions
+    Move Podstawa -1.5 0.5
+End_Parallel_Actions
 
-Rotate Podstawa.Nad1.NogaLewaCzlon1 OX 30 -15
-Rotate Podstawa.Nad1.NogaLewaCzlon1.NogaLewaCzlon2 OX 60 30
+Begin_Parallel_Actions
+    Rotate Podstawa.Nad1.Nad2.Nad3.Nad4.RekaLewaCzlon1 OZ 60 30 
+    Rotate Podstawa.Nad1.Nad2.Nad3.Nad4.RekaLewaCzlon1.RekaLewaCzlon2 OZ 120 60 
 
-Rotate Podstawa.Nad1.NogaPrawaCzlon1 OX 30 -15
-Rotate Podstawa.Nad1.NogaPrawaCzlon1.NogaPrawaCzlon2 OX 60 30
+    Rotate Podstawa.Nad1.Nad2.Nad3.Nad4.RekaPrawaCzlon1 OZ 60 -30 
+    Rotate Podstawa.Nad1.Nad2.Nad3.Nad4.RekaPrawaCzlon1.RekaPrawaCzlon2 OZ 120 60 
 
-Pause 1.0
-Set Podstawa 0 0 0 70 0 0
-Pause 0.2
-Set Podstawa 0 0 0 0 0 0
-Pause 0.2
-Set Podstawa 0 0 0 70 0 0
-Pause 0.2
-Set Podstawa 0 0 0 0 0 0
-Pause 0.2
-Set Podstawa 0 0 0 70 0 0
-Pause 0.2
-Set Podstawa 0 0 0 0 0 0
+    Rotate Podstawa.Nad1.NogaLewaCzlon1 OX 30 -15
+    Rotate Podstawa.Nad1.NogaLewaCzlon1.NogaLewaCzlon2 OX 60 30
+
+    Rotate Podstawa.Nad1.NogaPrawaCzlon1 OX 30 -15
+    Rotate Podstawa.Nad1.NogaPrawaCzlon1.NogaPrawaCzlon2 OX 60 30
+End_Parallel_Actions
+
+Begin_Parallel_Actions
+    Move Podstawa.Nad1 PODSTAWA_RELOCATE_SPEED PODSTAWA_RELOCATE_DIST
+    Move Podstawa.Nad1.Nad2 PODSTAWA_RELOCATE_SPEED PODSTAWA_RELOCATE_DIST
+    Move Podstawa.Nad1.Nad2.Nad3 PODSTAWA_RELOCATE_SPEED PODSTAWA_RELOCATE_DIST
+    Move Podstawa.Nad1.Nad2.Nad3.Nad4 PODSTAWA_RELOCATE_SPEED PODSTAWA_RELOCATE_DIST
+    Move Podstawa.Nad1.Nad2.Nad3.Nad4.Nad5 PODSTAWA_RELOCATE_SPEED PODSTAWA_RELOCATE_DIST
+    Move Podstawa.Nad1.Nad2.Nad3.Nad4.Nad5.Nad6 PODSTAWA_RELOCATE_SPEED PODSTAWA_RELOCATE_DIST
+End_Parallel_Actions
+
+Begin_Parallel_Actions
+    Move Podstawa.Nad1 PODSTAWA_RELOCATE_MINUSSPEED PODSTAWA_RELOCATE_DIST
+    Move Podstawa.Nad1.Nad2 PODSTAWA_RELOCATE_MINUSSPEED PODSTAWA_RELOCATE_DIST
+    Move Podstawa.Nad1.Nad2.Nad3 PODSTAWA_RELOCATE_MINUSSPEED PODSTAWA_RELOCATE_DIST
+    Move Podstawa.Nad1.Nad2.Nad3.Nad4 PODSTAWA_RELOCATE_MINUSSPEED PODSTAWA_RELOCATE_DIST
+    Move Podstawa.Nad1.Nad2.Nad3.Nad4.Nad5 PODSTAWA_RELOCATE_MINUSSPEED PODSTAWA_RELOCATE_DIST
+    Move Podstawa.Nad1.Nad2.Nad3.Nad4.Nad5.Nad6 PODSTAWA_RELOCATE_MINUSSPEED PODSTAWA_RELOCATE_DIST
+End_Parallel_Actions
+
+Begin_Parallel_Actions
+    Rotate Podstawa.Nad1.Nad2.Nad3.Nad4.RekaLewaCzlon1.RekaLewaCzlon2 OZ 180 360 
+    Rotate Podstawa.Nad1.Nad2.Nad3.Nad4.RekaPrawaCzlon1.RekaPrawaCzlon2 OZ 180 360 
+    Rotate Podstawa.Nad1.Nad2.Nad3.Nad4.Nad5.Nad6.Szyja.Glowa OY 180 360 
+    Rotate Podstawa.Nad1.NogaLewaCzlon1.NogaLewaCzlon2 OZ 180 360
+    Rotate Podstawa.Nad1.NogaPrawaCzlon1.NogaPrawaCzlon2 OZ 180 360
+End_Parallel_Actions
+
+
+Begin_Parallel_Actions
+    Pause 1.0
+End_Parallel_Actions
+
+Begin_Parallel_Actions
+    Set Podstawa 0 0 0 70 0 0
+End_Parallel_Actions
+
+Begin_Parallel_Actions
+    Pause 0.2
+End_Parallel_Actions
+
+Begin_Parallel_Actions
+    Set Podstawa 0 0 0 0 0 0
+End_Parallel_Actions
+
+Begin_Parallel_Actions
+    Pause 0.2
+End_Parallel_Actions
+
+Begin_Parallel_Actions
+    Set Podstawa 0 0 0 70 0 0
+End_Parallel_Actions
+
+Begin_Parallel_Actions
+    Pause 0.2
+End_Parallel_Actions
+
+Begin_Parallel_Actions
+    Set Podstawa 0 0 0 0 0 0
+End_Parallel_Actions
+
+Begin_Parallel_Actions
+    Pause 0.2
+End_Parallel_Actions
+
+Begin_Parallel_Actions
+    Set Podstawa 0 0 0 70 0 0
+End_Parallel_Actions
+
+Begin_Parallel_Actions
+    Pause 0.2
+End_Parallel_Actions
+
+Begin_Parallel_Actions
+    Set Podstawa 0 0 0 0 0 0
+End_Parallel_Actions
 
 /*
 Rotate Podstawa.Ramie1.Ramie2 OY -10 90

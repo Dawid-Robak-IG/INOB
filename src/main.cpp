@@ -36,7 +36,6 @@ int main()
   ProgramInterpreter pr_int;
   pr_int.Read_XML_Config("config/config.xml");
   pr_int.ExecProgram("to_config.txt");
-  
   return 0;
 }
 
