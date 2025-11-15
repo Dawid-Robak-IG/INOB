@@ -6,8 +6,82 @@
         <Lib Name="libInterp4Set.so"/>
     </Plugins>
     <Objects>
+        <!-- Cialo -->
+        <Cube Name="Podstawa" Shift="0 0 0" Scale="2.0 0.2 2.0" RotXYZ_deg="0 0 0" Trans_m="0 0 0" RGB="255 255 255"/>
+        <Cube Name="Podstawa.Nad1" Shift="0 0 0" Scale="1.8 0.2 1.8" RotXYZ_deg="0 0 0" Trans_m="0 0.2 0" RGB="0 255 0"/>
+        <Cube Name="Podstawa.Nad1.Nad2" Shift="0 0 0" Scale="1.6 0.2 1.6" RotXYZ_deg="0 0 0" Trans_m="0 0.2 0" RGB="0 0 255"/>
+        <Cube Name="Podstawa.Nad1.Nad2.Nad3" Shift="0 0 0" Scale="1.4 0.2 1.4" RotXYZ_deg="0 0 0" Trans_m="0 0.2 0" RGB="255 0 0"/>
+        <Cube Name="Podstawa.Nad1.Nad2.Nad3.Nad4" Shift="0 0 0" Scale="1.2 0.2 1.2" RotXYZ_deg="0 0 0" Trans_m="0 0.2 0" RGB="0 255 0"/>
+        <Cube Name="Podstawa.Nad1.Nad2.Nad3.Nad4.Nad5" Shift="0 0 0" Scale="1.0 0.2 1.0" RotXYZ_deg="0 0 0" Trans_m="0 0.2 0" RGB="0 0 255"/>
+        <Cube Name="Podstawa.Nad1.Nad2.Nad3.Nad4.Nad5.Nad6" Shift="0 0 0" Scale="0.8 0.2 0.8" RotXYZ_deg="0 0 0" Trans_m="0 0.2 0" RGB="255 0 0"/>
+
+        <!-- Glowa -->
+        <Cube Name="Podstawa.Nad1.Nad2.Nad3.Nad4.Nad5.Nad6.Szyja" 
+              Shift="0 0 0" Scale="0.1 1.0 0.1" RotXYZ_deg="0 0 0" Trans_m="0 0.2 0" RGB="0 255 0"/>
+        <Cube Name="Podstawa.Nad1.Nad2.Nad3.Nad4.Nad5.Nad6.Szyja.Glowa" 
+              Shift="0 0 0" Scale="1.0 1.0 1.0" RotXYZ_deg="0 0 0" Trans_m="0 1.0 0" RGB="0 0 255"/>
+
+        <!-- Twarz -->
+        <Cube Name="Podstawa.Nad1.Nad2.Nad3.Nad4.Nad5.Nad6.Szyja.Glowa.OkoLewe" 
+              Shift="0 0 0" Scale="0.2 0.2 0.2" RotXYZ_deg="0 0 0" Trans_m="-0.3 0.15 0.6" RGB="255 0 0"/>
+        <Cube Name="Podstawa.Nad1.Nad2.Nad3.Nad4.Nad5.Nad6.Szyja.Glowa.OkoPrawe" 
+              Shift="0 0 0" Scale="0.2 0.2 0.2" RotXYZ_deg="0 0 0" Trans_m="0.3 0.15 0.6" RGB="255 0 0"/>
+        <Cube Name="Podstawa.Nad1.Nad2.Nad3.Nad4.Nad5.Nad6.Szyja.Glowa.Usta" 
+              Shift="0 0 0" Scale="0.5 0.1 0.1" RotXYZ_deg="0 0 0" Trans_m="0 -0.2 0.6" RGB="0 255 0"/>
+        <Cube Name="Podstawa.Nad1.Nad2.Nad3.Nad4.Nad5.Nad6.Szyja.Glowa.Usta.KoniuszekPrawy" 
+              Shift="0 0 0" Scale="0.2 0.1 0.1" RotXYZ_deg="0 0 60" Trans_m="-0.25 -0.05 0" RGB="0 255 0"/>
+        <Cube Name="Podstawa.Nad1.Nad2.Nad3.Nad4.Nad5.Nad6.Szyja.Glowa.Usta.KoniuszekLewy" 
+              Shift="0 0 0" Scale="0.2 0.1 0.1" RotXYZ_deg="0 0 -60" Trans_m="0.25 -0.05 0" RGB="0 255 0"/>
+
+        <!-- Kapelusz -->
+        <Cube Name="Podstawa.Nad1.Nad2.Nad3.Nad4.Nad5.Nad6.Szyja.Glowa.Kapelusz1" 
+              Shift="0 0 0" Scale="1.1 0.1 1.1" RotXYZ_deg="0 0 0" Trans_m="0 0.5 0" RGB="0 255 0"/>
+        <Cube Name="Podstawa.Nad1.Nad2.Nad3.Nad4.Nad5.Nad6.Szyja.Glowa.Kapelusz1.Kapelusz2"
+              Shift="0 0 0" Scale="1.0 0.1 1.0" RotXYZ_deg="0 0 0" Trans_m="0 0.1 0" RGB="0 255 0"/>
+        <Cube Name="Podstawa.Nad1.Nad2.Nad3.Nad4.Nad5.Nad6.Szyja.Glowa.Kapelusz1.Kapelusz2.Kapelusz3" 
+              Shift="0 0 0" Scale="0.9 0.1 0.9" RotXYZ_deg="0 0 0" Trans_m="0 0.1 0" RGB="0 255 0"/>
+
+        <!-- Reka Lewa -->
+        <Cube Name="Podstawa.Nad1.Nad2.Nad3.Nad4.RekaLewaCzlon1" 
+              Shift="-0.5 0 0" Scale="1.0 0.2 0.2" RotXYZ_deg="0 0 30" Trans_m="-0.6 0 0" RGB="0 0 255"/>
+        <Cube Name="Podstawa.Nad1.Nad2.Nad3.Nad4.RekaLewaCzlon1.RekaLewaCzlon2" 
+              Shift="-0.5 0 0" Scale="1.5 0.2 0.2" RotXYZ_deg="0 0 60" Trans_m="-1.0 0 0" RGB="0 0 255"/>
+
+        <!-- Reka Prawa -->
+        <Cube Name="Podstawa.Nad1.Nad2.Nad3.Nad4.RekaPrawaCzlon1" 
+              Shift="0.5 0 0" Scale="1.0 0.2 0.2" RotXYZ_deg="0 0 -30" Trans_m="0.6 0 0" RGB="0 0 255"/>
+        <Cube Name="Podstawa.Nad1.Nad2.Nad3.Nad4.RekaPrawaCzlon1.RekaLewaCzlon2" 
+              Shift="0.5 0 0" Scale="1.5 0.2 0.2" RotXYZ_deg="0 0 60" Trans_m="1.0 0 0" RGB="0 0 255"/>
+
+        <!-- Noga Lewa -->
+        <Cube Name="Podstawa.Nad1.NogaLewaCzlon1" 
+              Shift="0 -0.5 0" Scale="0.2 1.0 0.2" RotXYZ_deg="-15 0 0" Trans_m="-0.3 -0.1 0" RGB="0 0 255"/>
+        <Cube Name="Podstawa.Nad1.NogaLewaCzlon1.NogaLewaCzlon2" 
+              Shift="0 -0.5 0" Scale="0.2 1.5 0.2" RotXYZ_deg="30 0 0" Trans_m="0 -1.0 0" RGB="0 0 255"/>
+        <Cube Name="Podstawa.Nad1.NogaLewaCzlon1.NogaLewaCzlon2.ButLewy" 
+              Shift="0 0 0" Scale="0.15 0.1 0.6" RotXYZ_deg="0 0 0" Trans_m="0 -1.55 0.2" RGB="0 255 0"/>
+
+        <!-- Noga Prawa -->
+        <Cube Name="Podstawa.Nad1.NogaPrawaCzlon1" 
+              Shift="0 -0.5 0" Scale="0.2 1.0 0.2" RotXYZ_deg="-15 0 0" Trans_m="0.3 -0.1 0" RGB="0 0 255"/>
+        <Cube Name="Podstawa.Nad1.NogaPrawaCzlon1.NogaPrawaCzlon2" 
+              Shift="0 -0.5 0" Scale="0.2 1.5 0.2" RotXYZ_deg="30 0 0" Trans_m="0 -1.0 0" RGB="0 0 255"/>
+        <Cube Name="Podstawa.Nad1.NogaPrawaCzlon1.NogaPrawaCzlon2.ButPrawy" 
+              Shift="0 0 0" Scale="0.15 0.1 0.6" RotXYZ_deg="0 0 0" Trans_m="0 -1.55 0.2" RGB="0 255 0"/>
+    </Objects>  
+</Config>   
+
+<!-- 
+<Config>
+    <Plugins>
+        <Lib Name="libInterp4Move.so"/>
+        <Lib Name="libInterp4Rotate.so"/>
+        <Lib Name="libInterp4Pause.so"/>
+        <Lib Name="libInterp4Set.so"/>
+    </Plugins>
+    <Objects>
         <Cube Name="Podstawa" Shift="0 -0.5 0" Scale="0.7 0.7 0.2" RotXYZ_deg="10 0 0" Trans_m="0.1 0 0" RGB="0 0 255"/>
         <Cube Name="Podstawa.Ramie1" Shift="0 -0.5 0" Scale="0.1 0.1 0.6" Trans_m="0 0.7 0"/>
         <Cube Name="Podstawa.Ramie1.Ramie2" Shift="0 -0.5 0" Scale="0.1 0.1 0.6" Trans_m="0 0.7 0"/>
     </Objects>  
-</Config>   
+</Config>    -->
