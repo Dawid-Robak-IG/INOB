@@ -1,5 +1,16 @@
-Move Podstawa -0.25 0.5
+Move Podstawa -1.5 0.5
 
+Rotate Podstawa.Nad1.Nad2.Nad3.Nad4.RekaLewaCzlon1 OZ 60 30 
+Rotate Podstawa.Nad1.Nad2.Nad3.Nad4.RekaLewaCzlon1.RekaLewaCzlon2 OZ 120 60 
+
+Rotate Podstawa.Nad1.Nad2.Nad3.Nad4.RekaPrawaCzlon1 OZ 60 -30 
+Rotate Podstawa.Nad1.Nad2.Nad3.Nad4.RekaPrawaCzlon1.RekaPrawaCzlon2 OZ 120 60 
+
+Rotate Podstawa.Nad1.NogaLewaCzlon1 OX 30 -15
+Rotate Podstawa.Nad1.NogaLewaCzlon1.NogaLewaCzlon2 OX 60 30
+
+Rotate Podstawa.Nad1.NogaPrawaCzlon1 OX 30 -15
+Rotate Podstawa.Nad1.NogaPrawaCzlon1.NogaPrawaCzlon2 OX 60 30
 
 /*
 Rotate Podstawa.Ramie1.Ramie2 OY -10 90
