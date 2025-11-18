@@ -19,4 +19,4 @@ noinst_HEADERS= AbstractComChannel.hh \
                 Interp4Move.hh \
                 Interp4Pause.hh \
                 Interp4Rotate.hh \
-                Interp4Set.hh \
+                Interp4Set.hh 
